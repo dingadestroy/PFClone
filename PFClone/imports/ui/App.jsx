@@ -5,47 +5,33 @@ import Button from './Button.jsx';
 import NavBar from './NavBar.jsx';
 import Carousel from './Carousel.jsx';
 import HomeGrid from './GridHomePage.jsx';
-
-import { Template } from 'meteor/templating';
-
-
-
-
-
 ReactBootstrap = require('react-bootstrap');
 
-import LoadScreenWrapper from './LoadScreenWrapper.jsx';
-
-
-
-
-
-
-import Task from './Task.jsx';
+var LoaderTwo = require('react-loader');
 
 // App component - represents the whole app
 export default class App extends Component {
-  getTasks() {
-    return [
-      { _id: 1, text: 'This is task 1' },
-      { _id: 2, text: 'This is task 2' },
-      { _id: 3, text: 'This is task 3' },
-    ];
-  }
+  constructor(props) {
+      super(props);
+         this.state = {
+             loading: true,
+         };
+     }
+     componentWillMount() {
+     this.c = Tracker.autorun(() => {
+       const sub = this.props.subscribe()
+       const state = this.props.fetch()
+       state.loading = !sub.ready()
+       this.setState(state)
+     })
+   }
 
-  returnWrapper() {
-    return(
-        < LoadScreenWrapper />
-      );
-  }
-
-  renderTasks() {
-    return this.getTasks().map((task) => (
-      <div>
-      <Task key={task._id} task={task} />
-      </div>
-    ));
-  }
+   componentDidMount() {
+      this.state.loading = false
+     const state = this.props.fetch();
+     const sub = this.props.subscribe()
+     this.setState(state);
+   }
 
   renderHomeGrid() {
     return (
@@ -62,12 +48,16 @@ export default class App extends Component {
     ); }
 
   render() {
+    const sub = this.props.subscribe()
     return (
-      <div className="container">
-        <NavBar />
-          {this.renderCarousel()}
-          {this.renderHomeGrid()}
-      </div>
-    );
+          <LoaderTwo loaded={sub.ready()}>
+          <div className="container">
+            <NavBar />
+              {this.renderCarousel()}
+              {this.renderHomeGrid()}
+          </div>
+        </LoaderTwo>
+       )
+
   }
 }

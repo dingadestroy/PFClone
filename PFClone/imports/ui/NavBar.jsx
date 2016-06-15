@@ -41,7 +41,7 @@ export default class App extends Component {
   };
     return  (
     <div>
-       <Nav bsStyle="tabs" justified activeKey={3} onSelect={this.handleSelect} style={divStyle} >
+       <Nav bsStyle="tabs" justified onSelect={this.handleSelect} style={divStyle} >
          <NavItem style={divStyle0}  className="menuItem" href="/home">
             <span  > Menu </span>
             <span > Explore & Order Online </span>

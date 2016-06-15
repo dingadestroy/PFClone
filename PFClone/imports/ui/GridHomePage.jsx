@@ -9,8 +9,6 @@ Clearfix = ReactBootstrap.Clearfix;
 Image = ReactBootstrap.Image;
 
 
-
-
 images = {
   imageOne : {
     location: "http://localhost:3000/images/earnpoints.jpg",
@@ -31,18 +29,14 @@ var GridList = React.createClass({
   getInitialState: function() {
    return {data: []};
   },
-  componentDidMount: function() {
-  console.log(Images.find().fetch()[0]['location']);
-  },
   getImageList() {
     var imageList =  Images.find().fetch();
     return imageList;
   },
-  renderProducts() {
+  renderImages() {
 
   return this.getImageList().map((product) => (
         <Col>
-
               <div class="photo">
                  <Image responsive />
             </div>
@@ -50,17 +44,15 @@ var GridList = React.createClass({
     ));
   },
   render() {
-
    return(
          <Grid>
          <Row className="show-grid">
-          {this.renderProducts()}
+          {this.renderImages()}
          </Row>
        </Grid>
    );
   }
 });
-
 
 // Task component - represents a single todo item
 export default class GridInstance extends Component {
@@ -69,17 +61,7 @@ getGrid() {
     <GridList />
   )
 }
-componentDidMount() {
-
-}
-
-renderProducts() {
-  return this.getProductsList().map((product) => (
-    < ProductTile product={product} key={product._id}>  </ProductTile>
-  ));
-}
  render() {
-
   return(
         this.getGrid()
   );

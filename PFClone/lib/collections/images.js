@@ -1,9 +1,7 @@
 Images = new Mongo.Collection('images');
 
 if (Meteor.isClient) {
-
   Meteor.startup(function() {
-
   });
 
   const handle = Meteor.subscribe('images.list');
@@ -11,8 +9,6 @@ if (Meteor.isClient) {
     const isReady = handle.ready();
   });
 }
-
-
 
 if(Images.find().count() === 0){
   var images = [
@@ -57,8 +53,8 @@ if(Images.find().count() === 0){
     }
   ];
 
-  _.each(images, function(image){
-    Images.insert(image);
-    console.log("Added ", image.text);
-  });
+  // _.each(images, function(image){
+  //   Images.insert(image);
+  //   console.log("Added ", image.text);
+  // });
 }
