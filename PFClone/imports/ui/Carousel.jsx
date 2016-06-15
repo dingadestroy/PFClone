@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 var belle = require('belle');
 var TextInput = belle.TextInput;
 
@@ -38,8 +38,14 @@ export default class CarouselClass extends Component {
   }
 
   render() {
+    let inlineStyling = {
+        width: "100%",
+        height: 30,
+        padding: 5,
+        backgroundColor:"#ee9900"
+      };
     return (
-      <div >
+      <div stlye={inlineStyling} >
           {this.renderCarousel()}
       </div>
     );

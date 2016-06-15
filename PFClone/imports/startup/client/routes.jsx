@@ -20,10 +20,18 @@ FlowRouter.route('/', {
   }
 })
 
+let bodyStyle = {
+  padding: 0,
+  margin: "5%"
+}
+
 const MainLayout = ({content}) => (
+  <body style={bodyStyle}>
     <div>
       <main>
         {content()}
       </main>
     </div>
+  </body>
+
 );
