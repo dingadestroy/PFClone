@@ -78,7 +78,6 @@ componentDidMount() {
 
     };
   return this.getImageList().map((product,i) => (
-
           <div style={floatL}  >
               <a href="#" key={i}>
                 < SingleTile product={product} id={product._id} onClick={this.handleClick}  image={"http://localhost:3000/images/earnpoints.jpg"} />

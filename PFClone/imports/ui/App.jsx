@@ -8,7 +8,6 @@ import HomeGrid from './GridHomePage.jsx';
 ReactBootstrap = require('react-bootstrap');
 
 var LoaderTwo = require('react-loader');
-
 // App component - represents the whole app
 export default class App extends Component {
   constructor(props) {
@@ -25,19 +24,24 @@ export default class App extends Component {
        this.setState(state)
      })
    }
-
    componentDidMount() {
       this.state.loading = false
      const state = this.props.fetch();
      const sub = this.props.subscribe()
      this.setState(state);
    }
-
   renderHomeGrid() {
     return (
       <div>
           < HomeGrid />
        </div>
+    );
+  }
+  renderSideMenu() {
+    return (
+      <div>
+        < Accordion />
+      </div>
     );
   }
   renderCarousel() {
@@ -46,18 +50,19 @@ export default class App extends Component {
       <Carousel />
       </div>
     ); }
-
   render() {
     const sub = this.props.subscribe()
+    let style101 = {
+      padding: "0 0 0 15%"
+    }
     return (
           <LoaderTwo loaded={sub.ready()}>
-          <div className="container">
-            <NavBar />
+          <div className="container" stlye={style101}>
+            <NavBar stlye={style101}/>
               {this.renderCarousel()}
               {this.renderHomeGrid()}
           </div>
         </LoaderTwo>
        )
-
   }
 }

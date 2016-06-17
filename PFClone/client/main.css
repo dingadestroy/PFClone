@@ -7,3 +7,6 @@ $primary-color: $my-brand-color;
 .loader-active {
   display: block;
 }
+.mainMenu{
+  width: 35%;
+}
